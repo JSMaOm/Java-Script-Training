@@ -62,34 +62,32 @@ let novelsInfo = {
   }
 }
 
-console.log(novelsInfo);
+function addNodeElement(nodeType, father) {
+  let node = document.createElement(nodeType);
+  father.appendChild(node);
+  return node;
+}
 
 function makeNovelList() {
-  let novelList = document.createElement('ul');
+  let novelList = addNodeElement('ul', document.body);
   let novel, novelTitle, novelAuthor, novelLanguage, novelCover;
   for(let i in novelsInfo) {
-    novel = document.createElement('li');
+    novel = addNodeElement('li', novelList);
     novel.id = i;
-    novelList.appendChild(novel);
 
     novelsInfo[i].novelCover = `imgs/${i}.jpg`;
-    novelCover = document.createElement('img');
+    novelCover = addNodeElement('img', novel);
     novelCover.setAttribute('src', novelsInfo[i].novelCover);
-    novel.appendChild(novelCover);
 
-    novelTitle = document.createElement('h3');
+    novelTitle = addNodeElement('h3', novel);
     novelTitle.textContent = novelsInfo[i].title;
-    novel.appendChild(novelTitle);
 
-    novelAuthor = document.createElement('p');
+    novelAuthor = addNodeElement('p', novel);
     novelAuthor.textContent = novelsInfo[i].author;
-    novel.appendChild(novelAuthor);
 
-    novelLanguage = document.createElement('span');
+    novelLanguage = addNodeElement('span', novel);
     novelLanguage.textContent = novelsInfo[i].language;
-    novel.appendChild(novelLanguage);
   }
-  document.body.appendChild(novelList);
 }
 
 makeNovelList();
